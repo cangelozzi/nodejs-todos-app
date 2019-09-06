@@ -1,6 +1,5 @@
 const data = [
-  { title: 'Todo One', desc: 'description one' },
-  { title: 'Todo Two', desc: 'description two' }
+  { id: 1, title: 'Initial Todo Test', desc: 'test description one' }
 ]
 
 export default data
