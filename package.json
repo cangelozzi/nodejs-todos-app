@@ -5,7 +5,11 @@
   "main": "app.js",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "clean": "rimraf ./dist"
+    "public": "ncp ./src/public/ ./dist/public/",
+    "hbscopy": "ncp ./src/views/ ./dist/views/",
+    "build": "npm run clean && tsc && npm run public && npm run hbscopy",
+    "clean": "rimraf ./dist",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "camillo",
@@ -22,6 +26,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "morgan": "^1.9.1",
+    "ncp": "^2.0.0",
     "rimraf": "^3.0.0"
   }
 }
