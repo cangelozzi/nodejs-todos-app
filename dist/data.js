@@ -6,7 +6,8 @@ const data = [
         title: 'Initial Todo Test',
         desc: 'test description one',
         todostate: 'Inserted',
-        duedate: '2019-09-09'
+        duedate: '2019-09-09',
+        completed: false
     }
 ];
 exports.default = data;
