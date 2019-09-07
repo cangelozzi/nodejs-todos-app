@@ -3,16 +3,20 @@ import data from '../data'
 
 const router = Router()
 
+// helpers references
+const stateTodos = ['Inserted', 'Processing', 'Completed']
+
 //! Routes
 
 // ---- CREATE
 router
   .route('/create')
   .get((req: Request, res: Response) => {
-    res.render('todos/create')
+    res.render('todos/create', { stateTodos })
   })
   .post((req: Request, res: Response) => {
     const body = req.body
+    console.log(body)
     data.push(body)
     body.id = new Date().getTime()
     res.redirect('/todos/list')
@@ -26,7 +30,6 @@ router.route('/list').get((req: Request, res: Response) => {
 // ---- DELETE
 router.route('/delete/:id').get((req: Request, res: Response) => {
   const { id } = req.params
-  console.log(id)
   // get index of object with id:37
   let removeIndex = data.map(item => item.id).indexOf(Number(id))
   // remove object
@@ -41,15 +44,18 @@ router
     const { id } = req.params
     const todoArray = data.filter(e => e.id.toString() === id)
     const todo = todoArray[0]
-    res.render('todos/edit', { todo })
+    const stateTodosFiltered = stateTodos.filter(e => e !== todo.todostate)
+    res.render('todos/edit', { todo, stateTodosFiltered })
   })
   .post((req: Request, res: Response) => {
     const { id } = req.params
-    const { title, desc } = req.body
+    const { title, desc, todostate, duedate } = req.body
     data.forEach(todo => {
       if (todo.id === Number(id)) {
         todo.title = title
         todo.desc = desc
+        todo.todostate = todostate
+        todo.duedate = duedate
       }
     })
     res.redirect('/todos/list')
