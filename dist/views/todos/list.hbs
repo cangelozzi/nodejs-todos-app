@@ -1,8 +1,8 @@
 <div class="row">
     {{#each data}}
     <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
+        <div class="card {{#if completed}} text-white bg-success {{else}} text-white bg-secondary{{/if}}">
+            <div class=" card-body">
                 <h3>{{title}}</h3>
                 <p>{{desc}}</p>
                 <p><span>State:</span> {{todostate}}</p>
