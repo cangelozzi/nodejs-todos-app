@@ -19,6 +19,11 @@ router
     console.log(body)
     data.push(body)
     body.id = new Date().getTime()
+    if (body.todostate === 'Completed') {
+      body.completed = true
+    } else {
+      body.completed = false
+    }
     res.redirect('/todos/list')
   })
 
@@ -56,6 +61,11 @@ router
         todo.desc = desc
         todo.todostate = todostate
         todo.duedate = duedate
+      }
+      if (todo.todostate === 'Completed') {
+        todo.completed = true
+      } else {
+        todo.completed = false
       }
     })
     res.redirect('/todos/list')
